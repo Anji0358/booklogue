@@ -4,5 +4,5 @@ export type Book={
     author:string,
     description:string,
     category:string,
-    publishedDate:number,
+    publishedDate:string,
 };
