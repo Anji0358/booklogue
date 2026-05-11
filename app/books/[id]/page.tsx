@@ -1,4 +1,7 @@
 import { books } from "@/features/books/data";
+import ReadingLogCard from "@/features/reading-logs/components/ReadingLogCard";
+import ReadingLogCardList from "@/features/reading-logs/components/ReadingLogCardList";
+import { readingLogs } from "@/features/reading-logs/data";
 
 type BookDetailPageProps = {
     params: Promise<{
@@ -15,6 +18,7 @@ const BookDetailPage = async ({ params }: BookDetailPageProps) => {
     if (!book) {
         return <p>本が見つかりません</p>
     }
+    const bookReadingLogs = readingLogs.filter((readingLog) => readingLog.bookId === bookId);
 
     return (
         <>
@@ -23,6 +27,8 @@ const BookDetailPage = async ({ params }: BookDetailPageProps) => {
             <p>カテゴリ：{book.category}</p>
             <p>出版年：{book.publishedDate}</p>
             <p>{book.description}</p>
+
+            <ReadingLogCardList readingLogs={bookReadingLogs} />
         </>
     )
 }

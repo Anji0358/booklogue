@@ -7,6 +7,10 @@ type ReadingLogListProps = {
 };
 
 const ReadingLogCardList = ({ readingLogs }: ReadingLogListProps) => {
+    if (readingLogs.length === 0) {
+        return <p>まだ読書ログはありません。</p>;
+    }
+
     return (
         <>
             <h2>読書ログ</h2>
