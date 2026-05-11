@@ -1,15 +1,10 @@
 import { books } from "../../features/books/data";
-import { Book } from "../../features/books/types";
-import BookCard from "../../features/books/components/BookCard";
+import BookList from "@/features/books/components/BookList";
 
 const BookPage = () => {
     return (
         <section>
-            {books.map((book) => {
-                return (
-                    <BookCard key={book.id} book={book} />
-                )
-            })}
+            <BookList books={books} />
         </section>
     )
 };
