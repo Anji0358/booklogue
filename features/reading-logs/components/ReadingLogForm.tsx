@@ -1,21 +1,39 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import { ReadingLog } from "../types";
 
-export function ReadingLogForm() {
+type ReadingLogFormProps = {
+    bookId: number;
+    onAddReadingLog: (readingLog: ReadingLog) => void;
+};
+
+const ReadingLogForm = ({
+    bookId,
+    onAddReadingLog,
+}: ReadingLogFormProps) => {
     const [userName, setUserName] = useState("");
     const [rating, setRating] = useState(5);
     const [comment, setComment] = useState("");
 
-    const handleSubmit = (event: FormEvent<HTMLElement>) => {
+    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        console.log({
+        const newReadingLog: ReadingLog = {
+            id: Date.now(),
+            bookId,
             userName,
             rating,
             comment,
-        });
-    }
+            readDate: new Date().toISOString().slice(0, 10),
+        };
+
+        onAddReadingLog(newReadingLog);
+
+        setUserName("");
+        setRating(5);
+        setComment("");
+    };
 
     return (
         <form onSubmit={handleSubmit}>
@@ -25,7 +43,7 @@ export function ReadingLogForm() {
                     id="userName"
                     type="text"
                     value={userName}
-                    onChange={(e) => setUserName(e.target.value)}
+                    onChange={(event) => setUserName(event.target.value)}
                 />
             </div>
 
@@ -34,7 +52,7 @@ export function ReadingLogForm() {
                 <select
                     id="rating"
                     value={rating}
-                    onChange={(e) => setRating(Number(e.target.value))}
+                    onChange={(event) => setRating(Number(event.target.value))}
                 >
                     <option value="5">5</option>
                     <option value="4">4</option>
@@ -49,7 +67,7 @@ export function ReadingLogForm() {
                 <textarea
                     id="comment"
                     value={comment}
-                    onChange={(e) => setComment(e.target.value)}
+                    onChange={(event) => setComment(event.target.value)}
                 />
             </div>
 
@@ -57,3 +75,4 @@ export function ReadingLogForm() {
         </form>
     );
 }
+export default ReadingLogForm; 

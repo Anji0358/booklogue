@@ -1,6 +1,5 @@
 import { books } from "@/features/books/data";
-import ReadingLogCardList from "@/features/reading-logs/components/ReadingLogCardList";
-import { ReadingLogForm } from "@/features/reading-logs/components/ReadingLogForm";
+import ReadingLogSection from "@/features/reading-logs/components/ReadingLogSection";
 import { readingLogs } from "@/features/reading-logs/data";
 
 type BookDetailPageProps = {
@@ -32,12 +31,10 @@ const BookDetailPage = async ({ params }: BookDetailPageProps) => {
                 <p>{book.description}</p>
             </section>
 
-            <section>
-                <h2>読書ログを投稿する</h2>
-                <ReadingLogForm />
-            </section>
-
-            <ReadingLogCardList readingLogs={bookReadingLogs} />
+            <ReadingLogSection
+                bookId={bookId}
+                initialReadingLog={bookReadingLogs}
+            />
         </main>
     )
 }
