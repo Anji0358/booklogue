@@ -15,9 +15,30 @@ const ReadingLogForm = ({
     const [userName, setUserName] = useState("");
     const [rating, setRating] = useState(5);
     const [comment, setComment] = useState("");
+    const [error, setError] = useState("");
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
+
+        if (userName.trim() === "") {
+            setError("投稿者名を入力してください。");
+            return;
+        }
+
+        if (comment.trim() === "") {
+            setError("コメントを入力してください。");
+            return;
+        }
+
+        if (comment.trim().length < 5) {
+            setError("コメントは5文字以上で入力してください。");
+            return;
+        }
+
+        if (rating < 1 || rating > 5) {
+            setError("評価は1〜5の範囲で選択してください。");
+            return;
+        }
 
         const newReadingLog: ReadingLog = {
             id: Date.now(),
@@ -37,6 +58,7 @@ const ReadingLogForm = ({
 
     return (
         <form onSubmit={handleSubmit}>
+            {error && <p>{error}</p>}
             <div>
                 <label htmlFor="userName">投稿者名</label>
                 <input
