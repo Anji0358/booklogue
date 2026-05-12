@@ -3,10 +3,14 @@ import { readingLogs } from "../data";
 import { ReadingLog } from "../types";
 
 type ReadingLogListProps = {
-    readingLogs: ReadingLog[]
+    readingLogs: ReadingLog[],
+    onDeleteReadingLog: (id: number) => void,
 };
 
-const ReadingLogCardList = ({ readingLogs }: ReadingLogListProps) => {
+const ReadingLogCardList = ({
+    readingLogs,
+    onDeleteReadingLog
+}: ReadingLogListProps) => {
     if (readingLogs.length === 0) {
         return <p>まだ読書ログはありません。</p>;
     }
@@ -15,7 +19,11 @@ const ReadingLogCardList = ({ readingLogs }: ReadingLogListProps) => {
         <>
             <h2>読書ログ</h2>
             {readingLogs.map((readingLog) => {
-                return <ReadingLogCard key={readingLog.id} readingLog={readingLog} />
+                <ReadingLogCard
+                    key={readingLog.id}
+                    readingLog={readingLog}
+                    onDeleteReadingLog={onDeleteReadingLog}
+                />
             })}
         </>
     )

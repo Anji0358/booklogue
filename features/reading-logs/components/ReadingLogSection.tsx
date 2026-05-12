@@ -21,6 +21,12 @@ const ReadingLogSection = ({
         setReadingLogs((prevReadingLogs) => [readingLog, ...prevReadingLogs])
     };
 
+    const deleteReadingLog = (id: number) => {
+        setReadingLogs((prevReadingLogs) =>
+            prevReadingLogs.filter((readingLog) => readingLog.id !== id)
+        );
+    }
+
     return (
         <section>
 
@@ -29,7 +35,12 @@ const ReadingLogSection = ({
 
             <h3>読書ログを投稿する</h3>
             <ReadingLogForm bookId={bookId} onAddReadingLog={addReadinLog} />
-            <ReadingLogCardList readingLogs={readingLogs} />
+
+            <ReadingLogCardList
+                readingLogs={readingLogs}
+                onDeleteReadingLog={deleteReadingLog}
+            />
+
 
         </section>
     )
