@@ -36,6 +36,7 @@ const ReadingLogSection = ({
             <h3>読書ログを投稿する</h3>
             <ReadingLogForm bookId={bookId} onAddReadingLog={addReadinLog} />
 
+            <h1></h1>
             <ReadingLogCardList
                 readingLogs={readingLogs}
                 onDeleteReadingLog={deleteReadingLog}
