@@ -33,7 +33,7 @@ const BookDetailPage = async ({ params }: BookDetailPageProps) => {
 
             <ReadingLogSection
                 bookId={bookId}
-                initialReadingLog={bookReadingLogs}
+                initialReadingLogs={bookReadingLogs}
             />
         </main>
     )

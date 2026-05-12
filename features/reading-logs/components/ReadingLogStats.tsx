@@ -1,11 +1,10 @@
-import React, { useState } from 'react'
 import { ReadingLog } from '../types';
 
-type ReadingLogStateProps = {
+type ReadingLogStatsProps = {
     readingLogs: ReadingLog[]
 };
 
-const ReadingLogState = ({ readingLogs }: ReadingLogStateProps) => {
+const ReadingLogStats = ({ readingLogs }: ReadingLogStatsProps) => {
     const logCount = readingLogs.length;
 
     if (logCount === 0) {
@@ -31,4 +30,4 @@ const ReadingLogState = ({ readingLogs }: ReadingLogStateProps) => {
     )
 }
 
-export default ReadingLogState
+export default ReadingLogStats;
